@@ -1,10 +1,20 @@
 # 02_database_ddl_laura_ecommerce_france
 Script SQL de création de la base de données et des 13 tables. Intègre la gestion des types de données optimisés (DECIMAL, TIMESTAMP), le moteur InnoDB et les contraintes d'intégrité référentielle.
 
+# 🛠️ Projet 2 : Création de la Base de Données (DDL)
+
+## 📋 Description du Projet
+Script SQL de création de la base de données et des 13 tables pour **Laura E-Commerce France**. Intègre la gestion des types de données optimisés (`DECIMAL`, `TIMESTAMP`), le moteur InnoDB et les contraintes d'intégrité référentielle.
+
+---
+
+## 💻 Script SQL Complet
+
+```sql
 -- Création de la base de données avec encodage UTF-8
 CREATE DATABASE IF NOT EXISTS laura_ecommerce_france 
 CHARACTER SET utf8mb4 
-COLLATE utf8mb4_unicode_client;
+COLLATE utf8mb4_unicode_ci;
 
 USE laura_ecommerce_france;
 
@@ -95,7 +105,7 @@ CREATE TABLE IF NOT EXISTS orders (
     CONSTRAINT fk_orders_customer FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
 ) ENGINE=InnoDB;
 
--- 10. Table des Lignes de Commandes (Articles commandés)
+-- 10. Table des Lignes de Commandes
 CREATE TABLE IF NOT EXISTS order_item (
     order_item_id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
@@ -117,7 +127,7 @@ CREATE TABLE IF NOT EXISTS payment (
     CONSTRAINT fk_payment_order FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- 12. Table de la Logistique / Expédition (Shipping)
+-- 12. Table de la Logistique (Shipping)
 CREATE TABLE IF NOT EXISTS shipping (
     shipping_id INT AUTO_INCREMENT PRIMARY KEY,
     order_id INT NOT NULL,
